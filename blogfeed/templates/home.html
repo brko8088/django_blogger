@@ -17,7 +17,7 @@ The Blogger
       <a href="{% url 'post_delete' post.pk %}">(Delete)</a>       
     {% endif %}
     <br/>
-    {{ post.body | slice:":150" }}
+    {{ post.body | slice:":150" | safe }}
   </li>
 {% endfor %}
 </ul>

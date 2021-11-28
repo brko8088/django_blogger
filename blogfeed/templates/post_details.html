@@ -9,7 +9,7 @@
   <h1>{{ post.title }}</h1>
   <p>by {{ post.author.first_name }} {{ post.author.last_name }} / {{ post.post_date }}</p>
   <hr>
-  <p>{{ post.body }}</p>
+  <p>{{ post.body | safe }}</p>
   <br/><br/>
   {% if user.is_authenticated %}
     <a href="{% url 'post_update' post.pk %}" class="btn btn-primary">Update</a>
