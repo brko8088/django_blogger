@@ -1,17 +1,18 @@
 {% extends 'base.html' %}
 {% block title %}
-The Blogger
+The Blogger | Categories
 {% endblock %}
 
 {% block content %}
 
-<h1>Posts</h1>
-<ul>
-{% for post in object_list %}
+{% if category_posts %}
+<h1>Category: {{ category_name }}</h1>
+
+{% for post in category_posts %}
   <li>
     <a href="{% url 'post_details' post.pk %}">{{ post.title }}</a>
     - 
-    <a href="{% url 'category' post.category|slugify %}">{{ post.category }}</a>
+    <a href="{% url 'category' post.category %}">{{ post.category }}</a>
     - 
     by {{ post.author.first_name }} {{ post.author.last_name }}  / {{ post.post_date }}
     
@@ -22,7 +23,9 @@ The Blogger
     <br/>
     {{ post.body | slice:":150" | safe }}
   </li>
-{% endfor %}
-</ul>
+{% endfor%}
+{% else %}
+<h3> No posts have been published under the {{ category_name }} category </h3>
+{% endif %}
 
 {% endblock %}

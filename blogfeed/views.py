@@ -33,3 +33,7 @@ class CreateCategoryView(CreateView):
   model = Category
   fields = '__all__'
   template_name = 'category_create.html'
+
+def CategoryView(request, category_name):
+  category_posts = Post.objects.filter(category=category_name.replace('-',' '))
+  return render(request, 'categories.html', {'category_name':category_name.replace('-', ' ').title(), 'category_posts': category_posts})

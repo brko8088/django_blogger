@@ -33,7 +33,7 @@
           {% if user.is_authenticated %}
             <li class="nav-item dropdown">
               <a class="nav-link active dropdown-toggle"  href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color: #e3f2fd;">
-                Logged in as, {{ user.first_name }} {{ user.last_name }}
+                Logged in as, {{ user.username }}:  {{ user.first_name }} {{ user.last_name }}
               </a>
               <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                 <li><a class="dropdown-item" href="{% url 'logout' %}">Profile</a></li>
