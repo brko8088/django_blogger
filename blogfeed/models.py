@@ -4,7 +4,7 @@ from django.urls import reverse
 
 class Post(models.Model):
   title = models.CharField(max_length=255)
-  # title_tag = models.CharField(max_length=255, default="The Blogger")
+  title_tag = models.CharField(max_length=255, default="the blogger")
   # header_image = models.ImageField(null=True, blank=True, upload_to="images/")
   author = models.ForeignKey(User, on_delete=models.CASCADE)
   body = models.TextField()
@@ -14,4 +14,4 @@ class Post(models.Model):
     return self.title + ' | ' + str(self.author)
 
   def get_absolute_url(self):
-    return reverse("post_details", args=(str(self.id)))
+    return reverse("home")
