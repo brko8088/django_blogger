@@ -4,7 +4,7 @@ Updating {{ post.title }}
 {% endblock %}
 
 {% block content %}
-
+{% if user.is_authenticated %}
 <h1>Updating {{ post.title }}</h1>
 <br/>
 <div class="form-group">
@@ -14,5 +14,10 @@ Updating {{ post.title }}
     <button class="btn btn-success">Update</button>
   </form>
 </div>
+{% else %}
+
+YOU ARE NOT ALLOWED HERE SIR!!
+
+{% endif %}
 
 {% endblock %}
