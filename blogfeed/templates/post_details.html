@@ -7,7 +7,7 @@
 {% block content %}
 <ul>
   <h1>{{ post.title }}</h1>
-  <p>by {{ post.author.first_name }} {{ post.author.last_name }} </p>
+  <p>by {{ post.author.first_name }} {{ post.author.last_name }} / {{ post.post_date }}</p>
   <hr>
   <p>{{ post.body }}</p>
   <br/><br/>

@@ -10,7 +10,7 @@ The Blogger
 {% for post in object_list %}
   <li>
     <a href="{% url 'post_details' post.pk %}">{{ post.title }}</a>
-     - {{ post.author.first_name }} {{ post.author.last_name }} 
+     - by {{ post.author.first_name }} {{ post.author.last_name }}  / {{ post.post_date }}
     <a href="{% url 'post_update' post.pk %}">(Update)</a> 
     <a href="{% url 'post_delete' post.pk %}">(Delete)</a> 
     <br/>

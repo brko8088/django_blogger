@@ -7,7 +7,8 @@ from .forms import CreatePostForm, UpdatePostForm
 class HomeView(ListView):
   model = Post
   template_name = 'home.html'
-  ordering=['-id']
+  ordering=['-post_date']
+  # ordering=['-id']
 
 class PostView(DetailView):
   model = Post
