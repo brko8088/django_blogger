@@ -13,15 +13,12 @@ The Blogger | Categories
   <a href="{% url 'post_details' post.pk %}">{{ post.title }}</a>
   -
   <a href="{% url 'category' post.category %}">{{ post.category }}</a>
-  -
   by {{ post.author.first_name }} {{ post.author.last_name }} / {{ post.post_date }}
-
   {% if user.is_authenticated and user.id == post.author.id  %}
   <a href="{% url 'post_update' post.pk %}">(Update)</a>
   <a href="{% url 'post_delete' post.pk %}">(Delete)</a>
   {% endif %}
-  <br />
-  {{ post.body | slice:":150" | safe }}
+  </br></br>
 </li>
 {% endfor%}
 {% else %}

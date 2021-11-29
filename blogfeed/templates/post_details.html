@@ -13,15 +13,9 @@
   <p>by {{ post.author.first_name }} {{ post.author.last_name }} / {{ post.post_date }}</p>
   <hr>
   <p>{{ post.body | safe }}</p>
-  <h3>{{ total_likes }} Likes</h3>
-  <br /><br />
+  <span><b>{{ total_likes }} Likes</b></span>
 
   {% if user.is_authenticated %}
-  {% if user.id == post.author.id %}
-  <a href="{% url 'post_update' post.pk %}" class="btn btn-primary">Update</a>
-  <a href="{% url 'post_delete' post.pk %}" class="btn btn-danger">Delete</a>
-  <br /><br />
-  {% endif %}
   <form action="{% url 'post_like' post.pk %}" method="POST">
     {% csrf_token %}
     {% if liked %}
@@ -30,8 +24,14 @@
     <button type="submit" , name="post_id" value="{{ post.id }}" class="btn btn-primary">Like</button>
     {% endif %}
   </form>
+  <br />
+  {% if user.id == post.author.id %}
+  <button href="{% url 'post_update' post.pk %}" class="btn btn-primary">Update</button>
+  <button href="{% url 'post_delete' post.pk %}" class="btn btn-danger">Delete</button>
+  <br />
   {% endif %}
-  <br /><br />
+  {% endif %}
+  <br />
   <a href="{% url 'home' %}" class="btn btn-secondary">Back to Home</a>
 </ul>
 {% endblock %}

@@ -62,8 +62,8 @@
             Logged in as, {{ user.username }}: {{ user.first_name }} {{ user.last_name }}
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li><a class="dropdown-item" href="{% url 'logout' %}">Profile</a></li>
-            <li><a class="dropdown-item" href="{% url 'logout' %}">Settings</a></li>
+            <li><a class="dropdown-item" href="{% url 'profile_page' %}">Update Profile</a></li>
+            <!-- <li><a class="dropdown-item" href="{% url 'logout' %}">Settings</a></li> -->
             <li><a class="dropdown-item" href="{% url 'logout' %}">Log Out</a></li>
           </ul>
         </li>
