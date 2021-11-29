@@ -24,7 +24,11 @@
   {% endif %}
   <form action="{% url 'post_like' post.pk %}" method="POST">
     {% csrf_token %}
-    <a type="submit" , name="post_id" value="{{ post.id }}" class="btn btn-primary">Like</a>
+    {% if liked %}
+    <button type="submit" , name="post_id" value="{{ post.id }}" class="btn btn-danger">UnLike</button>
+    {% else %}
+    <button type="submit" , name="post_id" value="{{ post.id }}" class="btn btn-primary">Like</button>
+    {% endif %}
   </form>
   {% endif %}
   <br /><br />
