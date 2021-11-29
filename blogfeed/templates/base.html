@@ -35,6 +35,10 @@
               {% for category in category_list %}
               <li><a class="dropdown-item" href="{% url 'category' category|slugify %}">{{category}}</a></li>
               {% endfor %}
+              </br>
+              <li>
+                <a class="dropdown-item" href="{% url 'category_create' %}">Add Category</a>
+              </li>
             </ul>
           </li>
 
@@ -45,11 +49,9 @@
           {% endif %}
 
           {% if user.is_authenticated %}
+
           <li class="nav-item">
             <a class="nav-link active" aria-current="page" href="{% url 'post_create' %}">Make a Post</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="{% url 'category_create' %}">Create a Category</a>
           </li>
           {% else %}
 
