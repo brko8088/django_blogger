@@ -5,36 +5,72 @@
 {% endblock %}
 
 {% block content %}
-<ul>
-  <h1>{{ post.title }}</h1>
-  <br />
-  <a href="{% url 'category' post.category|slugify %}">{{ post.category }}</a>
+<h1>{{ post.title }}</h1>
 
-  <p>by {{ post.author.first_name }} {{ post.author.last_name }} / {{ post.post_date }}</p>
-  <hr>
-  {% if post.header_image %}
-  <img src="{{ post.header_image.url }}" style="max-width: 50%;">
-  {% endif %}
-  <p>{{ post.body | safe }}</p>
+<br />
+<a href="{% url 'category' post.category|slugify %}">{{ post.category }}</a>
+<p>by {{ post.author.first_name }} {{ post.author.last_name }} / {{ post.post_date }}</p>
+<hr>
+
+{% if post.header_image %}
+<img src="{{ post.header_image.url }}" style="max-width: 50%;">
+{% endif %}
+<p>{{ post.body | safe }}</p>
+
+{% if user.is_authenticated %}
+<form action="{% url 'post_like' post.pk %}" method="POST">
+  {% csrf_token %}
+  {% if liked %}
   <span><b>{{ total_likes }} Likes</b></span>
+  <button type="submit" , name="post_id" value="{{ post.id }}" class="btn btn-danger">UnLike</button>
+  {% else %}
+  <span><b>{{ total_likes }} Likes</b></span>
+  <button type="submit" , name="post_id" value="{{ post.id }}" class="btn btn-primary">Like</button>
+  {% endif %}
+</form>
 
-  {% if user.is_authenticated %}
-  <form action="{% url 'post_like' post.pk %}" method="POST">
-    {% csrf_token %}
-    {% if liked %}
-    <button type="submit" , name="post_id" value="{{ post.id }}" class="btn btn-danger">UnLike</button>
-    {% else %}
-    <button type="submit" , name="post_id" value="{{ post.id }}" class="btn btn-primary">Like</button>
-    {% endif %}
-  </form>
-  <br />
-  {% if user.id == post.author.id %}
+<div class="card mb-3" style="max-width: 540px;">
+  <div class="row g-0">
+    <div class="col-md-4">
+      <img src="{{ post.author.profile.profile_picture.url }}" class="img-fluid rounded-start" alt="...">
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h5 class="card-title">{{ post.author.first_name }} {{ post.author.last_name }}</h5>
+        <p class="card-text">
+          <small class="text-muted">
+            {% if post.author.profile.website_url %}
+            <a href="{{ post.author.profile.website_url }}">|Website|</a>
+            {% endif %}
+            {% if post.author.profile.facebook_url %}
+            <a href="{{ post.author.profile.facebook_url }}">|Facebook|</a>
+            {% endif %}
+            {% if post.author.profile.instagram_url %}
+            <a href="{{ post.author.profile.instagram_url }}">|Instagram|</a>
+            {% endif %}
+            {% if post.author.profile.twitter_url %}
+            <a href="{{ post.author.profile.twitter_url }}">|Twitter|</a>
+            {% endif %}
+            {% if post.author.profile.github_url %}
+            <a href="{{ post.author.profile.github_url }}">|Github|</a>
+            {% endif %}
+          </small>
+        </p>
+        <p class="card-text">{{ post.author.profile.bio }}</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% if user.id == post.author.id %}
+<div>
   <button href="{% url 'post_update' post.pk %}" class="btn btn-primary">Update</button>
   <button href="{% url 'post_delete' post.pk %}" class="btn btn-danger">Delete</button>
-  <br />
-  {% endif %}
-  {% endif %}
-  <br />
+</div>
+{% endif %}
+
+{% endif %}
+<div>
   <a href="{% url 'home' %}" class="btn btn-secondary">Back to Home</a>
-</ul>
+</div>
 {% endblock %}
