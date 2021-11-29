@@ -22,7 +22,7 @@ class UserRegisterView(generic.CreateView):
 
 class UserProfileView(generic.UpdateView):
     form_class = EditProfileForm
-    template_name = 'registration/profile_page.html'
+    template_name = 'registration/profile_edit.html'
     success_url = reverse_lazy('home')
 
     def get_object(self):

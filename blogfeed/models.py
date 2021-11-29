@@ -35,3 +35,12 @@ class Post(models.Model):
 
     def get_absolute_url(self):
         return reverse("home")
+
+
+class UserProfile(models.Model):
+    meta_obj = models.OneToOneField(User, null=True, on_delete=models.CASCADE)
+    bio = models.TextField()
+    # profile_picture = models.ImageField(null=True, )
+
+    def __str__(self):
+        return str(self.meta_obj)
