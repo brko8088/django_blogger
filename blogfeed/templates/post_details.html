@@ -12,6 +12,9 @@
 
   <p>by {{ post.author.first_name }} {{ post.author.last_name }} / {{ post.post_date }}</p>
   <hr>
+  {% if post.header_image %}
+  <img src="{{ post.header_image.url }}" style="max-width: 50%;">
+  {% endif %}
   <p>{{ post.body | safe }}</p>
   <span><b>{{ total_likes }} Likes</b></span>
 

@@ -6,7 +6,7 @@ Register New User
 {% block content %}
 
 <h1>Register New User</h1>
-<br/>
+<br />
 <div class="form-group">
   <form method="POST">
     {% csrf_token %}
@@ -14,5 +14,7 @@ Register New User
     <button class="btn btn-success">Register</button>
   </form>
 </div>
+</br>
+<a href="{% url 'home' %}" class="btn btn-secondary">Back to Home</a>
 
 {% endblock %}
