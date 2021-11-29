@@ -7,6 +7,9 @@
 {% block content %}
 <ul>
   <h1>{{ post.title }}</h1>
+  <br/>  
+  <a href="{% url 'category' post.category|slugify %}">{{ post.category }}</a>
+     
   <p>by {{ post.author.first_name }} {{ post.author.last_name }} / {{ post.post_date }}</p>
   <hr>
   <p>{{ post.body | safe }}</p>
