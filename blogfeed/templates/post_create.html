@@ -7,7 +7,7 @@ Create New Post
 {% if user.is_authenticated %}
 
 <h1>Create New Post</h1>
-<br/>
+<br />
 <div class="form-group">
   <form method="POST">
     {% csrf_token %}
@@ -15,6 +15,11 @@ Create New Post
     <button class="btn btn-success">Post</button>
   </form>
 </div>
+
+<script>
+  var user_id = "{{ user.id }}";
+  document.getElementById("author_field").value = user_id;
+</script>
 {% else %}
 
 YOU ARE NOT ALLOWED HERE SIR!!

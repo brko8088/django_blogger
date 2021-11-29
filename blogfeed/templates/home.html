@@ -14,7 +14,7 @@ The Blogger
     -
     by {{ post.author.first_name }} {{ post.author.last_name }} / {{ post.post_date }}
 
-    {% if user.is_authenticated %}
+    {% if user.is_authenticated and user.id == post.author.id  %}
     <a href="{% url 'post_update' post.pk %}">(Update)</a>
     <a href="{% url 'post_delete' post.pk %}">(Delete)</a>
     {% endif %}
