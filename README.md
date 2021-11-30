@@ -1,4 +1,4 @@
 # blogger
 Django blog social media website
+https://bko-blogger-socialmedia.herokuapp.com/
 
-To use and log into the blogger [THE BLOGGER](https://bko-blogger-socialmedia.herokuapp.com/)
