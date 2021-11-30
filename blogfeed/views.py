@@ -34,7 +34,7 @@ class HomeView(ListView):
 
 class PostView(DetailView):
     model = Post
-    template_name = 'post_details.html'
+    template_name = 'posts/post_details.html'
 
     def get_context_data(self, *args, **kwargs):
         category_list = Category.objects.all()
@@ -53,25 +53,25 @@ class PostView(DetailView):
 class CreatePostView(CreateView):
     model = Post
     form_class = CreatePostForm
-    template_name = 'post_create.html'
+    template_name = 'posts/post_create.html'
 
 
 class UpdatePostView(UpdateView):
     model = Post
     form_class = UpdatePostForm
-    template_name = 'post_update.html'
+    template_name = 'posts/post_update.html'
 
 
 class DeletePostView(DeleteView):
     model = Post
-    template_name = 'post_delete.html'
+    template_name = 'posts/post_delete.html'
     success_url = reverse_lazy('home')
 
 
 class CreateCategoryView(CreateView):
     model = Category
     fields = '__all__'
-    template_name = 'category_create.html'
+    template_name = 'categories/category_create.html'
     success_url = reverse_lazy("home")
 
     def get_context_data(self, *args, **kwargs):
@@ -85,11 +85,11 @@ class CreateCategoryView(CreateView):
 def CategoryView(request, category_name):
     category_posts = Post.objects.filter(
         category=category_name.replace('-', ' '))
-    return render(request, 'categories.html', {'category_name': category_name.replace('-', ' ').title(), 'category_posts': category_posts})
+    return render(request, 'categories/categories.html', {'category_name': category_name.replace('-', ' ').title(), 'category_posts': category_posts})
 
 
 def CategoryListView(request):
     category_list = Category.objects.all()
     for cat in category_list:
         cat.name.title()
-    return render(request, 'category_list.html', {'category_list': category_list})
+    return render(request, 'categories/category_list.html', {'category_list': category_list})

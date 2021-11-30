@@ -5,20 +5,27 @@ The Blogger
 {% block content %}
 
 <h1>Posts</h1>
-<ul>
+<div style="margin: 10px;">
   {% for post in object_list %}
-  <li>
+  <div style="margin: 20px; padding: 10px; border-style: solid; border-radius: 10px; border-color: dimgrey;">
     <a href="{% url 'post_details' post.pk %}">{{ post.title }}</a>
-    -
-    <a href="{% url 'category' post.category|slugify %}">{{ post.category }}</a>
-    by {{ post.author.first_name }} {{ post.author.last_name }} / {{ post.post_date }}
+    by
+    <a href="{% url 'profile_page' post.author.profile.id %}">{{ post.author.first_name }}
+      {{ post.author.last_name }}</a>
+    <div>
+      categories: <a href="{% url 'category' post.category|slugify %}">{{ post.category }}</a>
+      | {{ post.post_date }}
+
+    </div>
+
     {% if user.is_authenticated and user.id == post.author.id %}
-    <a href="{% url 'post_update' post.pk %}">(Update)</a>
-    <a href="{% url 'post_delete' post.pk %}">(Delete)</a>
+    <div style="margin: 10px;">
+      <button href="{% url 'post_update' post.pk %}" class="btn btn-primary">Update</button>
+      <button href="{% url 'post_delete' post.pk %}" class="btn btn-danger">Delete</button>
+    </div>
     {% endif %}
-    </br></br>
-  </li>
+  </div>
   {% endfor %}
-</ul>
+</div>
 
 {% endblock %}
