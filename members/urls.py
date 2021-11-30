@@ -11,5 +11,6 @@ urlpatterns = [
     path('<int:pk>/profile/', ShowProfilePage.as_view(), name="profile_page"),
     path('<int:pk>/profile_page_edit/', EditProfilePageView.as_view(),
          name="profile_page_edit"),
-    path('profile_creation', CreateProfilePageView.as_view(), name="profile_creation")
+    path('profile_page_creation', CreateProfilePageView.as_view(),
+         name="profile_page_creation")
 ]
