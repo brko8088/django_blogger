@@ -2,8 +2,8 @@ from django.shortcuts import render, get_object_or_404
 from django.urls import reverse_lazy, reverse
 from django.http import HttpResponseRedirect
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
-from .models import Category, Post
-from .forms import CreatePostForm, UpdatePostForm
+from .models import Category, Post, Comment
+from .forms import CommentForm, CreatePostForm, UpdatePostForm
 
 
 def LikeView(request, pk):
@@ -23,7 +23,7 @@ class HomeView(ListView):
     model = Post
     template_name = 'home.html'
     categories = Category.objects.all()
-    ordering = ['-post_date']
+    ordering = ['-date_added']
 
     def get_context_data(self, *args, **kwargs):
         category_list = Category.objects.all()
@@ -93,3 +93,16 @@ def CategoryListView(request):
     for cat in category_list:
         cat.name.title()
     return render(request, 'categories/category_list.html', {'category_list': category_list})
+
+
+class AddCommentView(CreateView):
+    model = Comment
+    form_class = CommentForm
+    template_name = 'posts/add_comment.html'
+    success_url = reverse_lazy('home')
+
+    def form_valid(self, form):
+        form.instance.name = (self.request.user.first_name +
+                              " " + self.request.user.last_name)
+        form.instance.post_id = self.kwargs['pk']
+        return super().form_valid(form)

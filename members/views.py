@@ -2,9 +2,8 @@ from django.shortcuts import get_object_or_404, render
 from django.urls import reverse_lazy
 from django.views.generic import DetailView, CreateView, UpdateView
 from django.contrib.auth.views import PasswordChangeView
-from .forms import PasswordChangingForm, RegistrationForm, EditProfileForm
+from .forms import PasswordChangingForm, RegistrationForm, EditProfileSettingsForm, ProfileCreationPageForm
 from blogfeed.models import Profile
-from django.db import models
 
 
 class ShowProfilePage(DetailView):
@@ -20,12 +19,13 @@ class ShowProfilePage(DetailView):
 
 
 class CreateProfilePageView(CreateView):
-    models = Profile
+    model = Profile
+    form_class = ProfileCreationPageForm
     template_name = 'profile_settings/profile_page_creation.html'
 
-    def form_validation(self, form):
+    def form_valid(self, form):
         form.instance.user = self.request.user
-        return super.form_validation(form)
+        return super().form_valid(form)
 
 
 class EditProfilePageView(UpdateView):
@@ -49,7 +49,7 @@ class UserRegisterView(CreateView):
 
 
 class UserProfileSettingsView(UpdateView):
-    form_class = EditProfileForm
+    form_class = EditProfileSettingsForm
     template_name = 'profile_settings/profile_settings.html'
     success_url = reverse_lazy('home')
 
