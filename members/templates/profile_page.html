@@ -8,7 +8,7 @@
 {% endblock %}
 
 {% block content %}
-<h1>{{ user_profile.username }}</h1>
+<h1>Profile</h1>
 <div class="container">
   <div class="row justify-content-md-left">
     <div class="col-sm-4">
@@ -20,26 +20,37 @@
     </div>
     <div class="col-sm-4">
       <h5>
-        {% if user_profile.user.first_name %}
-        {{ user_profile.first_name }}
-        {% endif %}
-
-        {% if user_profile.last_name %}
-        {{ user_profile.last_name }}
-        {% endif %}
-
-        {{ user_profile.username }}
+        {{ user_profile.meta_obj.first_name }}
+        {{ user_profile.meta_obj.last_name }}
       </h5>
+      <h6>Username: {{ user_profile.meta_obj.username }}</h6>
       <p class="card-text">
-        {% if post.author.profile.bio %}
+        {% if user_profile.bio %}
         <p class="card-text">
-          {{ post.author.profile.bio }}
+          {{ user_profile.bio }}
         </p>
         {% else %}
         <p class="card-text text-muted">
           No bio provided
         </p>
         {% endif %}
+        <div style="display: flex; flex-direction: column; gap: 10px;">
+          {% if user_profile.website_url %}
+          <a class="btn btn-secondary" href="{{ user_profile.website_url | safe }}">Website</a>
+          {% endif %}
+          {% if user_profile.facebook_url %}
+          <a class="btn btn-secondary" href="{{ user_profile.facebook_url | safe }}">Facebook</a>
+          {% endif %}
+          {% if user_profile.instagram_url %}
+          <a class="btn btn-secondary" href="{{ user_profile.instagram_url | safe  }}">Instagram</a>
+          {% endif %}
+          {% if user_profile.twitter_url %}
+          <a class="btn btn-secondary" href="{{ user_profile.twitter_url | safe  }}">Twitter</a>
+          {% endif %}
+          {% if user_profile.github_url %}
+          <a class="btn btn-secondary" href="{{ user_profile.github_url | safe  }}">Github</a>
+          {% endif %}
+        </div>
       </p>
     </div>
   </div>

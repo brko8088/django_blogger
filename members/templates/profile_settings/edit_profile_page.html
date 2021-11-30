@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block title %}
+Create New Post
+{% endblock %}
+
+{% block content %}
+{% if user.is_authenticated %}
+
+<h1>Create New Post</h1>
+<br />
+<div class="form-group">
+  <form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.media }}
+    {{ form.as_p }}
+    <button class="btn btn-success">Post</button>
+  </form>
+</div>
+
+<script>
+  var user_id = "{{ user.id }}";
+  document.getElementById("author_field").value = user_id;
+</script>
+{% else %}
+
+YOU ARE NOT ALLOWED HERE SIR!!
+
+{% endif %}
+{% endblock %}
