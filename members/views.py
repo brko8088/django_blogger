@@ -5,6 +5,7 @@ from django.views.generic.detail import DetailView
 from django.contrib.auth.views import PasswordChangeView
 from .forms import PasswordChangingForm, RegistrationForm, EditProfileForm
 from blogfeed.models import Profile
+from django.db import models
 
 
 class ShowProfilePage(DetailView):
@@ -21,7 +22,10 @@ class ShowProfilePage(DetailView):
 
 class EditProfilePageView(generic.UpdateView):
     model = Profile
-    template_name = 'edit_profile_page.html'
+    template_name = 'profile_settings/edit_profile_page.html'
+    fields = ['bio', 'profile_picture', 'website_url', 'facebook_url',
+              'instagram_url', 'twitter_url', 'github_url']
+    success_url = reverse_lazy('profile_page')
 
 
 class PasswordsChangeView(PasswordChangeView):

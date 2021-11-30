@@ -1,29 +1,24 @@
 {% extends 'base.html' %}
 {% block title %}
-Create New Post
+Edit Profile Page
 {% endblock %}
 
 {% block content %}
-{% if user.is_authenticated %}
+{% if user.is_authenticated and user.id == profile.meta_obj.id%}
 
-<h1>Create New Post</h1>
+<h1>Edit Profile Page</h1>
 <br />
 <div class="form-group">
   <form method="POST" enctype="multipart/form-data">
     {% csrf_token %}
-    {{ form.media }}
     {{ form.as_p }}
-    <button class="btn btn-success">Post</button>
+    <button class="btn btn-success">Update Profile Page</button>
   </form>
 </div>
 
-<script>
-  var user_id = "{{ user.id }}";
-  document.getElementById("author_field").value = user_id;
-</script>
 {% else %}
 
-YOU ARE NOT ALLOWED HERE SIR!!
+YOU ARE NOT ALLOWED HERE, SIR!!
 
 {% endif %}
 {% endblock %}
