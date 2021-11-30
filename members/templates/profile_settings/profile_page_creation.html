@@ -1,18 +1,18 @@
 {% extends 'base.html' %}
 {% block title %}
-Edit Profile Page
+Create a Profile Page
 {% endblock %}
 
 {% block content %}
-{% if user.is_authenticated and user.id == profile.meta_obj.id%}
+{% if user.is_authenticated %}
 
-<h1>Edit Profile Page</h1>
+<h1>Create a Profile Page</h1>
 <br />
 <div class="form-group">
   <form method="POST" enctype="multipart/form-data">
     {% csrf_token %}
     {{ form.as_p }}
-    <button class="btn btn-success">Update Profile Page</button>
+    <button class="btn btn-success">Create Profile Page</button>
   </form>
 </div>
 

@@ -20,10 +20,10 @@
     </div>
     <div class="col-sm-4">
       <h5>
-        {{ user_profile.meta_obj.first_name }}
-        {{ user_profile.meta_obj.last_name }}
+        {{ user_profile.user.first_name }}
+        {{ user_profile.user.last_name }}
       </h5>
-      <h6>Username: {{ user_profile.meta_obj.username }}</h6>
+      <h6>Username: {{ user_profile.user.username }}</h6>
       <p class="card-text">
         {% if user_profile.bio %}
         <p class="card-text">

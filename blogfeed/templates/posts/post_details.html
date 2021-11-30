@@ -5,11 +5,12 @@
 {% endblock %}
 {% block content %}
 <h1>{{ post.title }}</h1>
-
-<br />
-<a href="{% url 'category' post.category|slugify %}">{{ post.category }}</a>
-<p>by {{ post.author.first_name }} {{ post.author.last_name }} / {{ post.post_date }}</p>
 <hr>
+
+<a href="{% url 'category' post.category|slugify %}">{{ post.category }}</a>
+<p>by
+  <a href="{% url 'profile_page' post.author.profile.id %}">{{ post.author.first_name }} {{ post.author.last_name }}</a>
+  / {{ post.date_added }}</p>
 
 {% if post.header_image %}
 <img src="{{ post.header_image.url }}" style="max-width: 50%;">
@@ -41,9 +42,8 @@
 </form>
 
 
-
-</br>
-<div class="card mb-3" style="max-width: 540px;">
+<div class="card mb-3"
+  style="max-width: 540px; margin: 10px; padding: 5px; border-style: solid; border-radius: 10px; border-color: dimgrey;">
   <div class="row g-0">
     <div class="col-md-4">
       {% if post.author.profile.profile_picture %}
@@ -109,6 +109,21 @@
       </div>
     </div>
   </div>
+</div>
+
+<div style="margin: 20px; padding: 10px;">
+  <h3>Comment Section</h3>
+  {% if post.comments.all %}
+  {% for comment in post.comments.all %}
+  <div style="margin: 10px; padding: 5px; border-style: solid; border-radius: 10px; border-color: dimgrey;">
+    <p><b>{{ comment.name }}</b> - <b>{{ comment.date_added }}</b></p>
+    <p>{{ comment.body }}</p>
+  </div>
+  {% endfor %}
+  <div style="margin: 10px; padding: 5px;">
+    <a href="{% url 'add_comment' post.pk %}" class="btn btn-primary">Comment</a>
+  </div>
+  {% endif %}
 </div>
 
 <div>

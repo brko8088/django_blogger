@@ -64,8 +64,13 @@
             Logged in as, {{ user.username }}
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li><a class="dropdown-item" href="{% url 'edit_profile_page' user.id %}">Edit Public Profile</a></li>
-            <li><a class="dropdown-item" href="{% url 'profile_edit' %}">Profile Settings</a></li>
+            {% if user.profile.id %}
+            <li><a class="dropdown-item" href="{% url 'profile_page' user.profile.id %}">View Profile Page</a></li>
+            {% else %}
+            <li><a class="dropdown-item" href="{% url 'profile_page_creation' %}">Create Profile Page</a></li>
+            {% endif %}
+            <li><a class="dropdown-item" href="{% url 'profile_settings' %}">Profile Settings</a>
+            </li>
             <li><a class="dropdown-item" href="{% url 'logout' %}">Log Out</a></li>
           </ul>
         </li>

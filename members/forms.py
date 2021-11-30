@@ -1,6 +1,7 @@
 from django.contrib.auth.forms import UserChangeForm, UserCreationForm, PasswordChangeForm
 from django.contrib.auth.models import User
 from django import forms
+from blogfeed.models import Profile
 from django.forms import widgets
 
 
@@ -25,7 +26,23 @@ class RegistrationForm(UserCreationForm):
         self.fields['password2'].widget.attrs['class'] = 'form-control'
 
 
-class EditProfileForm(UserChangeForm):
+class ProfileCreationPageForm(forms.ModelForm):
+    class Meta:
+        model = Profile
+        fields = ('bio', 'profile_picture', 'website_url', 'facebook_url',
+                  'instagram_url', 'twitter_url', 'github_url')
+        widgets = {
+            'bio': forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'Type a Bio!'}),
+            # 'profile_picture': forms.Image(attrs={'class': 'form-control'}),
+            'website_url': forms.TextInput(attrs={'class': 'form-control'}),
+            'facebook_url': forms.TextInput(attrs={'class': 'form-control'}),
+            'instagram_url': forms.TextInput(attrs={'class': 'form-control'}),
+            'twitter_url': forms.TextInput(attrs={'class': 'form-control'}),
+            'github_url': forms.TextInput(attrs={'class': 'form-control'}),
+        }
+
+
+class EditProfileSettingsForm(UserChangeForm):
     email = forms.EmailField(widget=forms.EmailInput(
         attrs={'class': 'form-control'}))
     first_name = forms.CharField(

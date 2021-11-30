@@ -14,7 +14,7 @@ The Blogger
       {{ post.author.last_name }}</a>
     <div>
       categories: <a href="{% url 'category' post.category|slugify %}">{{ post.category }}</a>
-      | {{ post.post_date }}
+      | {{ post.date_added }}
 
     </div>
 
