@@ -10,8 +10,17 @@ Log In
 <div class="form-group">
   <form method="POST">
     {% csrf_token %}
-    {{ form.as_p }}
-    <button class="btn btn-success">Log In</button>
+    <form>
+      <div class="mb-3">
+        <label for="inputusername" class="form-label">UserName</label>
+        <input type="username" class="form-control" id="inputusername" name="username">
+      </div>
+      <div class="mb-3">
+        <label for="inputpassword" class="form-label">Password</label>
+        <input type="password" class="form-control" id="inputpassword" name="password">
+      </div>
+      <button type="submit" class="btn btn-primary">Log In</button>
+    </form>
   </form>
 </div>
 </br>
