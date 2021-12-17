@@ -19,8 +19,8 @@
 {% if user.is_authenticated %}
 {% if user.id == post.author.id %}
 <div style="margin: 20px">
-  <button href="{% url 'post_update' post.pk %}" class="btn btn-secondary">Edit Post</button>
-  <button href="{% url 'post_delete' post.pk %}" class="btn btn-danger">Delete Post</button>
+  <a href="{% url 'post_update' post.pk %}" class="btn btn-secondary">Edit Post</a>
+  <a href="{% url 'post_delete' post.pk %}" class="btn btn-danger">Delete Post</a>
 </div>
 {% endif %}
 {% endif %}

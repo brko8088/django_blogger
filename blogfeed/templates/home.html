@@ -20,8 +20,8 @@ The Blogger
 
     {% if user.is_authenticated and user.id == post.author.id %}
     <div style="margin: 10px;">
-      <button href="{% url 'post_update' post.pk %}" class="btn btn-primary">Update</button>
-      <button href="{% url 'post_delete' post.pk %}" class="btn btn-danger">Delete</button>
+      <a href="{% url 'post_update' post.pk %}" class="btn btn-primary">Update</a>
+      <a href="{% url 'post_delete' post.pk %}" class="btn btn-danger">Delete</a>
     </div>
     {% endif %}
   </div>
