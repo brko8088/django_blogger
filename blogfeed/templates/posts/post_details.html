@@ -25,7 +25,7 @@
 {% endif %}
 {% endif %}
 
-<form action="{% url 'post_like' post.pk %}" method="POST">
+<!-- <form action="{% url 'post_like' post.pk %}" method="POST">
   {% csrf_token %}
   {% if liked %}
   <span><b>{{ total_likes }} Likes</b></span>
@@ -39,7 +39,7 @@
   <button type="submit" , name="post_id" value="{{ post.id }}" class="btn btn-primary">Like</button>
   {% endif %}
   {% endif %}
-</form>
+</form> -->
 
 
 <div class="card mb-3"

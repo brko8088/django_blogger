@@ -33,7 +33,7 @@ class EditProfilePageView(UpdateView):
     template_name = 'profile_settings/profile_page_edit.html'
     fields = ['bio', 'profile_picture', 'website_url', 'facebook_url',
               'instagram_url', 'twitter_url', 'github_url']
-    success_url = reverse_lazy('profile_page')
+    success_url = reverse_lazy('home')
 
 
 class PasswordsChangeView(PasswordChangeView):
