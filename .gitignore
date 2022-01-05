@@ -1,3 +1,7 @@
-ll_env/
-__pycache__/
-**/__pycache__/
+.env
+debug.log
+blogger/__pycache__
+blogfeed/__pycache__
+blogfeed/migrations/__pycache__
+members/__pycache__
+members/migrations/__pycache__
